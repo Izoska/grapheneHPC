@@ -1,0 +1,49 @@
+
+plugins {
+	id 'org.springframework.boot' version '2.6.1'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'war'
+}
+
+group = 'com.LJ'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+	implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+	implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'mysql:mysql-connector-java'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+	// OAuth
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2'
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+//	implementation 'org.springframework.boot:spring-boot-configuration-processor'
+//	implementation 'javax.xml.bind:jaxb-api:2.3.1'
+//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	
+	implementation group: 'com.yahoofinance-api', name: 'YahooFinanceAPI', version: '3.15.0'
+	// swagger
+	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger2
+	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
+	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+	
+	// lombok
+	// https://mvnrepository.com/artifact/org.projectlombok/lombok
+	compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+	annotationProcessor 'org.projectlombok:lombok:1.18.20'
