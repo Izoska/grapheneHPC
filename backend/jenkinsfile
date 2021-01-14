@@ -1,0 +1,25 @@
+
+node {
+    stage ('clone') {
+        checkout scm 
+    }
+    
+     stage ('gradle build') {
+        sh 'chmod +x gradlew'
+        sh './gradlew build --exclude-task test'
+        sh 'ls build/libs'
+    }
+    
+    stage ('docker build') {
+            app = docker.build("hyuna919/stocksafe:$BUILD_NUMBER")
+    }
+    
+    stage ('docker run') {
+        sh 'docker stop dockerwar||true'
+        sh 'docker rm dockerwar||true'
+        sh 'docker run -d \
+            --name dockerwar \
+            -p 8080:9999 \
+            webserver'
+    }
+}
