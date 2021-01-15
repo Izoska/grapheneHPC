@@ -108,4 +108,80 @@ def predict(list1):
             ylabel='Price($)',
             ylabel_lower='Volume',
             scale_padding=0
-            # yl
+            # ylabel='가격(달러)',
+            # ylabel_lower='거래량'
+            )
+
+        # 여백 자르기
+        img = Image.open(file_name1)
+        croppedImg = img.crop((200,200,4000,2300))
+        croppedImg.save(file_name1)
+
+        gcpUpload(file_name1=file_name1)
+
+    return [file_name1, file_name2]
+
+
+# 이미지 저장 -> GCP storage에 업로드
+def gcpUpload(file_name1):
+    #    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "src/main/resources/keystore/exalted-arcanum-356907-6273c406bf43.json"
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/home/tweetpantry/stocksafe_test/key/exalted-arcanum-356907-6273c406bf43.json"
+
+    storage_client = storage.Client()
+    buckets = list(storage_client.list_buckets())
+
+    print(buckets)
+
+    # ----------------------------------------------------------
+    print(file_name1)
+
+    bucket_name = 'stocksafe_storage'    # 서비스 계정 생성한 bucket 이름 입력
+    source_file_name = file_name1    # GCP에 업로드할 파일 절대경로
+    destination_blob_name = file_name1    # 업로드할 파일을 GCP에 저장할 때의 이름
+
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(destination_blob_name)
+
+    blob.upload_from_filename(source_file_name)
+
+    print('success')
+    print('----end. -->' + str(time.time() - globalStartTime) + "----")
+
+
+def noThread():
+    global globalStartTime
+    globalStartTime = time.time()
+    startTime = time.time()
+
+    print('----start.----')
+
+    stock_list = readStockList()
+
+    #print('----read stock list success.----')
+    print(stock_list)
+
+    img_file = predict(stock_list)
+
+    #print('----predict success. image saved.----')
+
+    # gcpUpload(img_file[0])
+
+   # print('----gcp storage upload success.----')
+
+    print('----end. -->' + str(time.time() - startTime) + "----")
+
+
+# 단순히 입력을 나눠서 여러 개 동시에 실행하는 방법.
+# 멀티 스레드지만 동시 처리랑 다를게 없다.
+def multiThread():
+    global globalStartTime
+    globalStartTime = time.time()
+
+    print('----start.----')
+
+    list1 = readStockList()
+    print(list1)
+
+    thread_cnt = 2
+    part_size
