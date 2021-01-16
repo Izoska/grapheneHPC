@@ -184,4 +184,23 @@ def multiThread():
     print(list1)
 
     thread_cnt = 2
-    part_size
+    part_size = int( len(list1) / thread_cnt )
+    for i in range(0, thread_cnt):  # 
+        start = i*part_size
+        print(start, thread_cnt, part_size)
+        list1_slice=[]
+        if i != thread_cnt-1:
+            list1_slice = list1[start:start+part_size]
+        else:
+            list1_slice = list1[start:]
+        print(list1_slice)
+        my_thread = threading.Thread(target=predict, args=(list1_slice,))
+        my_thread.start()
+    
+
+    # print('----end. -->' + str(time.time() - startTime) + "----")
+
+
+if __name__ == '__main__':
+    # noThread()
+    multiThread()
