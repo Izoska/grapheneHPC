@@ -30,4 +30,9 @@ public class SwaggerConfig {
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder().title("StockSafe API")
 				.description("StockSafe API Reference for Developers")
-				.termsOfServiceUrl("https
+				.termsOfServiceUrl("https://github.com/hyuna919/StockSafe_Spring")
+				.license("StockSafe License")
+				.licenseUrl("ssafy@ssafy.com").version("1.0").build();
+	}
+
+}
