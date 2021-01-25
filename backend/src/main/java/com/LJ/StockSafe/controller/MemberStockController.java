@@ -29,4 +29,20 @@ public class MemberStockController {
 	
 	@PostMapping
 	public ResponseEntity<String> createMemberStock(@RequestBody MemberStockDto memberstockdto){
-		if(memberStockService.cr
+		if(memberStockService.createMemberStock(memberstockdto)) return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+	}
+	
+	@GetMapping
+	public ResponseEntity<List<MemberStockDto>> readMemberStock(String memberId){
+		return new ResponseEntity<List<MemberStockDto>> (memberStockService.readMemberStock(memberId), HttpStatus.OK);
+	}
+	
+	
+	@DeleteMapping
+	public ResponseEntity<String> deleteMemberStock(MemberStockDto memberstockdto){
+		if(memberStockService.deleteMemberStock(memberstockdto)) return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+	}
+	
+}
