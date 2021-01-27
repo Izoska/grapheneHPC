@@ -35,4 +35,16 @@ public class NewsController {
 	
 	@GetMapping
 	public ResponseEntity<List<NewsDto>> readStockNews(String stockId){
-		return new ResponseEntity<List<New
+		return new ResponseEntity<List<NewsDto>>(newsService.readStockNews(stockId), HttpStatus.OK);  
+	}
+	
+	
+	@DeleteMapping
+	public ResponseEntity<String> deleteNews(String date){
+		if(newsService.deleteNews(date)) return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+	}
+	
+	
+	
+}
