@@ -56,4 +56,6 @@ public class MemberDto {
 	}
 	public void setMemberRegdate(String memberRegdate) {
 		this.memberRegdate = memberRegdate;
+	}
 	
+}
