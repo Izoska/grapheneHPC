@@ -12,4 +12,7 @@ public interface ReplyMapper {
 	int createReply(ReplyDto replydto);
 	List<ReplyDto> readAllReply(String stockId);
 	int updateReply(ReplyDto replydto);
-	int deleteRepl
+	int deleteReply(ReplyDto replydto);
+	
+	
+}
