@@ -1,6 +1,6 @@
 package com.LJ.StockSafe.model.dto;
 
-public class ReplyCreateDto {
+public class ReplyDto {
 	private int id;
 	private String stockId;
 	private String replyContent;
@@ -9,10 +9,10 @@ public class ReplyCreateDto {
 	private int replyLevel;
 	private int replyParent;
 	
-	public ReplyCreateDto() {
+	public ReplyDto() {
 		super();
 	}
-	public ReplyCreateDto(int id, String stockId, String replyContent, String memberId, String replyRegdate, int replyLevel,
+	public ReplyDto(int id, String stockId, String replyContent, String memberId, String replyRegdate, int replyLevel,
 			int replyParent) {
 		super();
 		this.id = id;
@@ -65,6 +65,13 @@ public class ReplyCreateDto {
 	public void setReplyParent(int replyParent) {
 		this.replyParent = replyParent;
 	}
+	@Override
+	public String toString() {
+		return "ReplyDto [id=" + id + ", stockId=" + stockId + ", replyContent=" + replyContent + ", memberId="
+				+ memberId + ", replyRegdate=" + replyRegdate + ", replyLevel=" + replyLevel + ", replyParent="
+				+ replyParent + "]";
+	}
+	
 	
 	
 }
