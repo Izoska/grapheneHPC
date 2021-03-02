@@ -6,4 +6,7 @@ import com.LJ.StockSafe.model.dto.NewsDto;
 
 public interface NewsService {
 
-	boolean cre
+	boolean createNews(NewsDto newsdto);
+	List<NewsDto> readStockNews(String stockId);
+	boolean deleteNews(String date);
+}
