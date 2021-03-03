@@ -9,3 +9,23 @@
 		insert into memberStock(member_id, predict_id)
 		select #{memberId}, #{predictId} from dual
 		where not exists(
+			select member_id, predict_id from memberStock
+			where member_id=#{memberId} and predict_id = #{predictId})
+	</insert>
+	
+	<select id="readMemberStock" parameterType="String" resultType="MemberStockDto">
+		select *
+		from memberStock m
+		join predict p on m.predict_id = p.id
+		join stock s on m.predict_id = s.id
+		where member_id = #{memberId}
+	</select>
+	
+	
+	<delete id="deleteMemberStock" parameterType="MemberStockDto">
+		delete from memberStock
+		where member_id=#{memberId} and predict_id=#{predictId};
+	</delete>
+	
+</mapper>
+	

@@ -1,0 +1,63 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ 
+ <mapper namespace="com.LJ.StockSafe.model.mapper.StockMapper">
+ 	
+
+
+ 	<insert id="createStock" parameterType="StockDto">
+ 		insert into stock(id, stock_name, stock_market, stock_sector, stock_industry)
+ 		values(#{id}, #{stockName}, #{stockMarket}, #{stockSector}, #{stockIndustry})
+ 		
+ 	</insert>
+
+	
+	<select id="readStockAll" parameterType="String" resultType="StockDto">
+		select id, stock_name, stock_sector, stock_industry, stock_market
+		from stock
+		where id like concat('%', #{keyword}, '%') or stock_name like concat('%', #{keyword}, '%') 
+		or stock_sector like concat('%', #{keyword}, '%')
+	</select>
+
+	<select id="readStockAllbyTag" parameterType="String" resultType="StockDto">
+		select id, stock_name, stock_sector, stock_industry, stock_market
+		from stock
+		where ${tag} like concat('%', #{keyword}, '%')
+	</select>
+
+	 <!-- this.id = id;
+		this.stockName = stockName;
+		this.stockMarket = stockMarket;
+		this.stockSector = stockSector;
+		this.stockindustry = stockindustry;
+		this.stockMarketcap = stockMarketcap;
+		this.stockCount = stockCount;
+		this.stockForeigner = stockForeigner;
+		this.stockPer = stockPer;
+		this.stockPbr = stockPbr;
+		this.stockBps = stockBps;
+		this.stockDivyield = stockDivyield; -->
+ 	<select id="readStockDetail" parameterType="String" resultType="StockDto">
+		select *
+		from stock s
+		where s.id=#{id}
+	</select>
+ 	
+	<update id="updateStock" parameterType="StockDto">
+		update stock
+		set stock_name=#{stockName}, stock_market=#{stockMarket}, stock_sector=#{stockSector},
+		stock_industry=#{stockIndustry}
+		where id=#{id}
+	</update> 
+	
+	<delete id="deleteStock" parameterType="String">
+		delete from stock
+		where id=#{id}
+	
+	</delete>
+ 
+ 
+ </mapper>
