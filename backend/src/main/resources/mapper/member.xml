@@ -1,0 +1,52 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.LJ.StockSafe.model.mapper.MemberMapper">
+	
+	<insert id="createMember" parameterType="MemberDto">
+		insert into member(id, member_pw, member_name, member_email_id, member_email_domain, member_regdate)
+		values(#{id}, #{memberPw}, #{memberName}, #{memberEmailId}, #{memberEmailDomain}, now())
+	</insert>
+	
+	<select id="readMemberAll" parameterType="String" resultType="MemberDto">
+		select *
+		from member
+		<if test="key == 'id'">
+				where id like concat('%', #{word}, '%')
+		</if>
+		<if test="key == 'member_name'">
+				where member_name like concat('%', #{word}, '%')
+		</if>
+		<if test="key == 'member_email_domain'">
+				where member_email_domain like concat('%', #{word}, '%')
+		</if>
+	</select>
+	
+	
+	<select id="readMember" parameterType="String" resultType="MemberDto">
+		select *
+		from member
+		where id=#{id}
+	</select>
+	
+	<select id="loginMember" parameterType="MemberDto" resultType="String">
+		select member_name
+		from member
+		where id=#{id} and member_pw=#{memberPw}
+	</select>
+	
+	<update id="updateMember" parameterType="MemberDto">
+		update member
+		set member_name=#{memberName}, member_email_id=#{memberEmailId}, 
+		member_email_domain=#{memberEmailDomain}, member_pw=#{memberPw}
+		where id=#{id}
+	</update>
+
+	<delete id="deleteMember" parameterType="String">
+		delete from member
+		where id=#{id}
+	</delete>	
+</mapper>
+	

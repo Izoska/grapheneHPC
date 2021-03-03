@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.LJ.StockSafe.model.mapper.MemberStockMapper">
+	
+	<insert id="createMemberStock" parameterType="MemberStockDto" useGeneratedKeys="true"
+    keyProperty="id">
+		insert into memberStock(member_id, predict_id)
+		select #{memberId}, #{predictId} from dual
+		where not exists(
