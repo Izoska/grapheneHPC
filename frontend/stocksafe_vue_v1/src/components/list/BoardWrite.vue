@@ -92,3 +92,8 @@ export default {
     movePage() {
       this.$router.push({ name: "Login" });
     },
+  },
+};
+</script>
+
+<style></style>
