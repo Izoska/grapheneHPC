@@ -20,4 +20,22 @@
 <script>
 import moment from "moment";
 
-export default
+export default {
+  name: "BoardListRow",
+  props: {
+    newsDate: String,
+    newsTitle: String,
+    newsUri: String,
+
+    replyContent: String,
+    replyRegdate: String,
+  },
+  computed: {
+    changeDateFormat() {
+      return moment(new Date(this.regtime)).format("YY.MM.DD.");
+    },
+  },
+};
+</script>
+
+<style></style>
