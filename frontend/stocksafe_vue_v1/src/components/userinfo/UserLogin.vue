@@ -47,4 +47,78 @@
       >
     </div>
     <div class="text-center">
-      <rout
+      <router-link class="small" :to="{ name: 'UserJoin' }"
+        >Create an Account!</router-link
+      >
+    </div>
+  </div>
+</template>
+
+<script>
+import http from "@/utils/http-common.js";
+import { mapMutations } from "vuex";
+
+export default {
+  data() {
+    return {
+      login_user: { id: "", pw: "" },
+    };
+  },
+  methods: {
+    ...mapMutations(["SET_LOGIN_STATE", "SET_LIKE_STOCK", "SET_MY_STOCK"]),
+    Login() {
+      console.log("?");
+      http
+        .post(`/member/login`, {
+          id: this.login_user.id,
+          memberPw: this.login_user.pw,
+        })
+        .then(({ data }) => {
+          console.log("!");
+          console.log(data);
+          console.log("!");
+          let msg = "아이디 혹은 비밀번호를 확인해주세요.";
+          if (data != "") {
+            msg = "로그인 성공";
+            this.SET_LOGIN_STATE({
+              id: this.login_user.id,
+              name: data,
+            });
+
+            this.GetLikeStock();
+            this.GetMyStock();
+            alert(msg);
+            this.$router.push({ name: "Home" });
+          } else alert(msg);
+        });
+    },
+
+    GetLikeStock() {
+      http
+        .get(`/likestock`, { params: { memberId: this.login_user.id } })
+        .then(({ data }) => {
+          let msg = "관심주식 불러오기 실패.";
+          console.log("!");
+          console.log(data);
+          if (data != "xx") {
+            msg = "관심주식 불러오기 성공";
+            this.SET_LIKE_STOCK(data);
+          } else alert(msg);
+        });
+    },
+    GetMyStock() {
+      http
+        .get(`/memberstock`, { params: { memberId: this.login_user.id } })
+        .then(({ data }) => {
+          let msg = "내주식 불러오기 실패.";
+          if (data != "xx") {
+            msg = "내주식 불러오기 성공";
+            this.SET_MY_STOCK(data);
+          } else alert(msg);
+        });
+    },
+  },
+};
+</script>
+
+<style></style>
