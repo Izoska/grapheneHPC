@@ -64,3 +64,25 @@ const routes = [
       {
         path: "update",
         name: "UserUpdate",
+        component: UserUpdate,
+      },
+      {
+        path: "Join",
+        name: "UserJoin",
+        component: UserJoin,
+      },
+      {
+        path: "password",
+        name: "UserPassword",
+        component: UserPassword,
+      },
+    ],
+  },
+];
+
+const router = new VueRouter({
+  mode:'history',
+  routes,
+});
+
+export default router;
