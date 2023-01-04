@@ -741,4 +741,53 @@ c
                     <div class="card bg-danger text-white shadow">
                       <div class="card-body">
                         Danger
-             
+                        <div class="text-white-50 small">#e74a3b</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 mb-4">
+                    <div class="card bg-secondary text-white shadow">
+                      <div class="card-body">
+                        Secondary
+                        <div class="text-white-50 small">#858796</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 mb-4">
+                    <div class="card bg-light text-black shadow">
+                      <div class="card-body">
+                        Light
+                        <div class="text-black-50 small">#f8f9fc</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 mb-4">
+                    <div class="card bg-dark text-white shadow">
+                      <div class="card-body">
+                        Dark
+                        <div class="text-white-50 small">#5a5c69</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 mb-4">
+                <!-- Illustrations -->
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                      Illustrations
+                    </h6>
+                  </div>
+                  <div class="card-body">
+                    <div class="text-center">
+                      <img
+                        class="img-fluid px-3 px-sm-4 mt-3 mb-4"
+                        style="width: 25rem"
+                        src="img/undraw_posting_photo.svg"
+                        alt="..."
+                      />
+                    </div>
+                    <p>
+                      Add some quality, svg illustrations to your projec
