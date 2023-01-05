@@ -844,4 +844,29 @@ c
         </footer>
         <!-- End of Footer -->
       </div>
-      <!
+      <!-- End of Content Wrapper -->
+    </div>
+  </div>
+</template>
+
+<script>
+// @ is an alias to /src
+// import HelloWorld from "@/components/HelloWorld.vue";
+
+export default {
+  name: "Home",
+  data() {
+    return {
+      key1: "width : 20%",
+    };
+  },
+  components: {},
+  methods: {},
+  mounted() {},
+};
+</script>
+
+<style>
+@import url("../css/sb-admin-2.css");
+/* @import url("css/sb-admin-2.min.css"); */
+</style>
